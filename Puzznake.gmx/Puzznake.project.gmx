@@ -5,9 +5,37 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\sprHead</sprite>
+    <sprite>sprites\sprBodyPart</sprite>
+    <sprite>sprites\sprPortal</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_activate_turn.gml</script>
+    <script>scripts\scr_clear_dir.gml</script>
+    <script>scripts\scr_deactivate_turn.gml</script>
+    <script>scripts\scr_enums.gml</script>
+    <script>scripts\scr_get_dir.gml</script>
+    <script>scripts\scr_get_into_portal.gml</script>
+    <script>scripts\scr_get_move_script.gml</script>
+    <script>scripts\scr_initial_setups.gml</script>
+    <script>scripts\scr_move.gml</script>
+    <script>scripts\scr_move_setups.gml</script>
+    <script>scripts\scr_update_dir.gml</script>
+  </scripts>
+  <objects name="objects">
+    <object>objects\oHead</object>
+    <object>objects\oPortal</object>
+    <object>objects\oMovableCube</object>
+    <object>objects\oFood</object>
+    <object>objects\oPortal1_1</object>
+    <object>objects\oPortal1_2</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room0</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>

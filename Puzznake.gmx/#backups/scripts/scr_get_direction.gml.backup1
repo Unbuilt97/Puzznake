@@ -1,0 +1,29 @@
+// 2019-07-07 01:11:15
+///scr_get_direction()
+
+switch( keyboard_key )
+{
+    case vk_up:
+    case ord("W"):
+        return e_Dir.UP;
+        break;
+        
+    case vk_down:
+    case ord("S"):
+        return e_Dir.DOWN;
+        break;
+        
+    case vk_left:
+    case ord("A"):
+        return e_Dir.LEFT;
+        break;
+    
+    case vk_right:
+    case ord("D"):
+        return e_Dir.RIGHT;
+        break;
+        
+    default:
+        return e_Dir.NONE;
+        break;
+}
