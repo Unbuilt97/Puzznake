@@ -1,15 +1,5 @@
 ///scr_get_move_script(portalFlag)
 
-/////////////// Available Scripts /////////////////
-/// 
-/// scr_move(portalFlag)
-/// scr_move_pushing_box(e_Dir)
-/// scr_move_into_portal(e_Dir)
-/// scr_move_and_eat(e_Dir)
-/// scr_get_into_portal()
-///
-///////////////////////////////////////////////////
-
 var portalFlag = argument0;
 
 // Set Position
@@ -32,17 +22,26 @@ if( place_free(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffse
 
     return scr_move;
 }
-else if( place_meeting(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oMovableCube) ) // Move Cube
+else if( place_meeting(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oMoveCube) ) // Move Cube
 {
-    if(portalFlag)
-        scr_get_into_portal();
+    cubeID = scr_get_instance_id(xx, yy, oMoveCube);
+    
+    if( place_free(cubeID.x + sign(hMove)*global.moveOffset, cubeID.y + sign(vMove)*global.moveOffset ) )
+    {
 
-    return scr_move_pushing_box;
+        if(portalFlag)
+            scr_get_into_portal();
+            
+        return scr_move_pushing_box;
+    }else{
+        scr_clear_cube_id();
+        return -1;
+    }
 }
 else if( place_meeting(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oPortal) ) // Portal
 {
     show_debug_message("Hiting Portal");
-    var portalID = instance_place(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oPortal);
+    var portalID = scr_get_instance_id(xx, yy, oPortal);
     var outside = portalID.portalOut;
 
     if( !portalFlag )

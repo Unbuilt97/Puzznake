@@ -6,32 +6,68 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sprHead</sprite>
-    <sprite>sprites\sprBodyPart</sprite>
-    <sprite>sprites\sprPortal</sprite>
+    <sprites name="Player">
+      <sprite>sprites\sprHead</sprite>
+      <sprite>sprites\sprBodyPart</sprite>
+    </sprites>
+    <sprites name="Objects">
+      <sprite>sprites\sprMoveCube</sprite>
+      <sprite>sprites\sprPortal</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_activate_turn.gml</script>
-    <script>scripts\scr_clear_dir.gml</script>
-    <script>scripts\scr_deactivate_turn.gml</script>
-    <script>scripts\scr_enums.gml</script>
-    <script>scripts\scr_get_dir.gml</script>
     <script>scripts\scr_get_into_portal.gml</script>
-    <script>scripts\scr_get_move_script.gml</script>
-    <script>scripts\scr_initial_setups.gml</script>
-    <script>scripts\scr_move.gml</script>
-    <script>scripts\scr_move_setups.gml</script>
-    <script>scripts\scr_update_dir.gml</script>
+    <script>scripts\scr_get_instance_id.gml</script>
+    <script>scripts\scr_clear_cube_id.gml</script>
+    <scripts name="Move">
+      <script>scripts\scr_get_move_script.gml</script>
+      <script>scripts\scr_move.gml</script>
+      <script>scripts\scr_move_pushing_box.gml</script>
+      <script>scripts\scr_move_setups.gml</script>
+    </scripts>
+    <scripts name="Player">
+      <scripts name="Create Event">
+        <script>scripts\scr_initial_setups.gml</script>
+      </scripts>
+    </scripts>
+    <scripts name="Turn">
+      <script>scripts\scr_activate_turn.gml</script>
+      <script>scripts\scr_deactivate_turn.gml</script>
+    </scripts>
+    <scripts name="Dir">
+      <script>scripts\scr_clear_dir.gml</script>
+      <script>scripts\scr_get_dir.gml</script>
+      <script>scripts\scr_update_dir.gml</script>
+    </scripts>
+    <scripts name="Enums">
+      <script>scripts\scr_enums.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
-    <object>objects\oHead</object>
-    <object>objects\oPortal</object>
-    <object>objects\oMovableCube</object>
-    <object>objects\oFood</object>
-    <object>objects\oPortal1_1</object>
-    <object>objects\oPortal1_2</object>
+    <objects name="Player">
+      <object>objects\oHead</object>
+    </objects>
+    <objects name="Portals">
+      <objects name="Parent">
+        <object>objects\oPortal</object>
+      </objects>
+      <objects name="Children">
+        <objects name="1">
+          <object>objects\oPortal1_2</object>
+          <object>objects\oPortal1_1</object>
+        </objects>
+        <objects name="2">
+          <object>objects\oPortal2_1</object>
+          <object>objects\oPortal2_2</object>
+        </objects>
+      </objects>
+    </objects>
+    <objects name="Level Objects">
+      <object>objects\oMoveCube</object>
+      <object>objects\oFood</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

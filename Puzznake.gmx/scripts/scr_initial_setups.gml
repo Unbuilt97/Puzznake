@@ -3,6 +3,7 @@
 global.isTurnActive = false;
 
 actionScript = -1;
+cubeID = noone;
 movesLeft = 0;
 hMove = 0;
 vMove = 0;
