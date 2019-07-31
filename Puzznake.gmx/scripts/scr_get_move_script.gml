@@ -1,3 +1,4 @@
+/// scr_get_move_script(portalFlag)
 ///scr_get_move_script(portalFlag)
 
 var portalFlag = argument0;

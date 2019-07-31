@@ -1,15 +1,5 @@
-// 2019-07-13 00:29:16
+// 2019-07-29 17:51:25
 ///scr_get_move_script(portalFlag)
-
-/////////////// Available Scripts /////////////////
-/// 
-/// scr_move(portalFlag)
-/// scr_move_pushing_box(e_Dir)
-/// scr_move_into_portal(e_Dir)
-/// scr_move_and_eat(e_Dir)
-/// scr_get_into_portal()
-///
-///////////////////////////////////////////////////
 
 #args portalFlag
 
@@ -24,33 +14,35 @@ if(!portalFlag){
     yy = yOut;
 }
 
-// Check is instances exists
 
-if( object_exists(oMovableCube) )
-    var movableCubeExists = instance_exists(oMovableCube);
-if( object_exists(oPortal) )
-    var portalExists = instance_exists(oPortal);
-if( object_exists(oFood) )
-    var foodExists = instance_exists(oFood);
 
-if( place_free(xx+global.moveOffset, yy+global.moveOffset) ) // Empty place
+if( place_free(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset) ) // Empty place
 {
     if(portalFlag)
         scr_get_into_portal();
 
     return scr_move;
 }
-else if( movableCubeExists and place_meeting(xx+global.moveOffset, yy+global.moveOffset, oMovableCube) ) // Move Cube
+else if( place_meeting(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oMoveCube) ) // Move Cube
 {
-    if(portalFlag)
-        scr_get_into_portal();
+    cubeID = scr_get_instance_id(xx, yy, oMoveCube);
+    
+    if( place_free(cubeID.x + sign(hMove)*global.moveOffset, cubeID.y + sign(vMove)*global.moveOffset ) )
+    {
 
-    return scr_move_pushing_box;
+        if(portalFlag)
+            scr_get_into_portal();
+            
+        return scr_move_pushing_box;
+    }else{
+        scr_clear_cube_id();
+        return -1;
+    }
 }
-else if( portalExists and place_meeting(xx+global.moveOffset, yy+global.moveOffset, oPortal) ) // Portal
+else if( place_meeting(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oPortal) ) // Portal
 {
     show_debug_message("Hiting Portal");
-    var portalID = instance_place(xx+global.moveOffset, yy+global.moveOffset, oPortal);
+    var portalID = scr_get_instance_id(xx, yy, oPortal);
     var outside = portalID.portalOut;
 
     if( !portalFlag )
@@ -61,7 +53,7 @@ else if( portalExists and place_meeting(xx+global.moveOffset, yy+global.moveOffs
 
     return scr_get_move_script(portalFlag);
 }
-else if( foodExists and place_meeting(xx+global.moveOffset, yy+global.moveOffset, oFood))  // Food
+else if( place_meeting(xx+sign(hMove)*global.moveOffset, yy+sign(vMove)*global.moveOffset, oFood))  // Food
 {
     if(portalFlag)
         scr_get_into_portal();
